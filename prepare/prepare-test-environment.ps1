@@ -19,7 +19,7 @@ $fullQualifiedImageLocoHazelcast=$DOCKER_REPO + '/' + $imageLocoHazelcast + ':' 
 echo "hazelcast full qualified docker image name is: $fullQualifiedImageLocoHazelcast ";
 
 $tagLocoFrontendAng=$args[3];
-$imageLocoFrontendAng="locofrontendAng";
+$imageLocoFrontendAng="locofrontendang";
 $fullQualifiedImageLocoFrontendAng=$DOCKER_REPO + '/' + $imageLocoFrontendAng + ':' + $tagLocoFrontendAng;
 echo "frontend full qualified docker image name is: $fullQualifiedImageLocoFrontendAng ";
 
@@ -31,4 +31,4 @@ docker run -d -p 8083:83 $fullQualifiedImageLocoApiService;
 
 docker run -d -p 8081:81 $fullQualifiedImageLocoHazelcast;
 
-#docker run -d -p 8093:80 $fullQualifiedImageLocoFrontendAng;
+docker run -d -p 8093:80 $fullQualifiedImageLocoFrontendAng;

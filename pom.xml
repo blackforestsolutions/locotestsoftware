@@ -9,12 +9,19 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
+        <!-- Project information -->
+        <loco.api.service.version>0.0.2-SNAPSHOT</loco.api.service.version>
+        <loco.crawler.version>0.0.1-SNAPSHOT</loco.crawler.version>
+        <loco.hazelcast.version>0.0.1-SNAPSHOT</loco.hazelcast.version>
+        <loco.front.end.version>latest</loco.front.end.version>
         <!-- Maven Productive dependencies -->
         <java.version>11</java.version>
         <lombok.version>1.18.8</lombok.version>
         <commons.codec.version>1.14</commons.codec.version>
         <slf4j.version>2.13.0</slf4j.version>
         <commons.io.version>2.6</commons.io.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <!-- Maven test Dependencies -->
         <assertj.version>3.9.0</assertj.version>
         <junit.version>5.4.2</junit.version>
@@ -91,6 +98,18 @@
             <artifactId>spock-core</artifactId>
             <version>${spock.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.2.2.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version>2.7.2</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -203,6 +222,7 @@
         </plugins>
     </build>
 
+
     <profiles>
         <profile>
             <id>windows</id>
@@ -217,16 +237,32 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <groupId>org.codehaus.mojo</groupId>
                         <executions>
-                            <execution><!-- Automated Docker Push -->
-                                <id>Docker Push</id>
-                                <phase>generate-sources</phase>
+                            <execution><!-- Automated Test environment set up -->
+                                <id>Docker test environment</id>
+                                <phase>initialize</phase>
                                 <goals>
                                     <goal>exec</goal>
                                 </goals>
                                 <configuration>
-                                    <executable>${basedir}/deployment.bat</executable>
+                                    <executable>${basedir}/prepare/prepare-test-environment.bat</executable>
                                     <arguments>
-                                        <argument>${project.version}</argument>
+                                        <argument>${loco.crawler.version}</argument>
+                                        <argument>${loco.api.service.version}</argument>
+                                        <argument>${loco.hazelcast.version}</argument>
+                                        <argument>${loco.front.end.version}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution><!-- Automated cleanup -->
+                                <id>Docker test environment cleanup</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${basedir}/cleanup/cleanup.bat</executable>
+                                    <arguments>
+                                        <argument>${basedir}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -236,4 +272,6 @@
             </build>
         </profile>
     </profiles>
+
+
 </project>

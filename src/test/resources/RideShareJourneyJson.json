@@ -1,0 +1,641 @@
+{
+  "26842a68-f7a2-432b-8f24-e554fa68a0de": {
+    "journey": {
+      "id": "26842a68-f7a2-432b-8f24-e554fa68a0de",
+      "legs": {
+        "7d163788-6d5f-4fe4-92c1-cce1ae001643": {
+          "id": "7d163788-6d5f-4fe4-92c1-cce1ae001643",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.110922,
+              "longitude": 8.682126
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Ð¤ÑÐ°Ð½ÐºÑÑÑÑ",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.520006,
+              "longitude": 13.404954
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "ÐÐµÑÐ»ÑÐ½",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T08:00:00.000+0000",
+          "arrivalTime": "2020-06-06T00:59:18.000+0000",
+          "duration": 61158.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 63
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1983534971-frankfurt-berlin"
+            }
+          },
+          "distance": {
+            "value": 1629.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1983534971-frankfurt-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "fc8146e4-4b01-43c5-9fc7-8f8e0bc12e7d": {
+    "journey": {
+      "id": "fc8146e4-4b01-43c5-9fc7-8f8e0bc12e7d",
+      "legs": {
+        "f2d1f182-b625-44f0-92dd-7c6dfc54823d": {
+          "id": "f2d1f182-b625-44f0-92dd-7c6dfc54823d",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.0577191,
+              "longitude": 8.5869294
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Unterschweinstiege 2a, 60549 Frankfurt am Main, Germany",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.413156,
+              "longitude": 13.573773
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Berlin",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T14:50:00.000+0000",
+          "arrivalTime": "2020-06-05T20:17:12.000+0000",
+          "duration": 19632.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 25
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1983506896-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 558.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1983506896-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "BMW 3 SERIES",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "3d92f910-14aa-41d3-aed1-a51116cddd41": {
+    "journey": {
+      "id": "3d92f910-14aa-41d3-aed1-a51116cddd41",
+      "legs": {
+        "99ee97bd-564d-4340-9539-3b309ccd88d6": {
+          "id": "99ee97bd-564d-4340-9539-3b309ccd88d6",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.115745,
+              "longitude": 8.6123925
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Wiesbadener Str., 60486",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.456441,
+              "longitude": 13.322109
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "S+U Rathaus Steglitz (Berlin) [Bus Albrechtstr.], Berlin",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T11:40:00.000+0000",
+          "arrivalTime": "2020-06-05T16:55:50.000+0000",
+          "duration": 18950.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 20
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1984210962-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 531.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1984210962-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "VOLKSWAGEN GOLF",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "57a13b75-8a52-48ad-b1d7-5ba6c9e8511a": {
+    "journey": {
+      "id": "57a13b75-8a52-48ad-b1d7-5ba6c9e8511a",
+      "legs": {
+        "9368a7c4-af4e-4d40-8001-118eaa9092e5": {
+          "id": "9368a7c4-af4e-4d40-8001-118eaa9092e5",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.037932,
+              "longitude": 8.562151
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Port lotniczy Frankfurt, Frankfurt",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.550739,
+              "longitude": 13.43032
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Prenzlauer Allee 138, 10409 Berlin, Germany",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T15:00:00.000+0000",
+          "arrivalTime": "2020-06-05T21:14:49.000+0000",
+          "duration": 22489.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 33
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1983582461-frankfurt-nad-menem-berlin"
+            }
+          },
+          "distance": {
+            "value": 581.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1983582461-frankfurt-nad-menem-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "AUDI A3",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "121d5ae1-b9ad-41d7-b611-053f3e4c009c": {
+    "journey": {
+      "id": "121d5ae1-b9ad-41d7-b611-053f3e4c009c",
+      "legs": {
+        "a0c5aa97-a72b-40c6-8f54-a0ab43c30b27": {
+          "id": "a0c5aa97-a72b-40c6-8f54-a0ab43c30b27",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.12954,
+              "longitude": 8.759369
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Hanauer LandstraÃe, Frankfurt am Main",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.506519,
+              "longitude": 13.333643
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Hardenbergplatz 2, Berlin",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T15:30:00.000+0000",
+          "arrivalTime": "2020-06-05T21:01:51.000+0000",
+          "duration": 19911.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 27
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1983448306-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 547.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1983448306-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "SKODA SCALA",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "51130f37-c4f2-4d5e-9638-02f56c09b705": {
+    "journey": {
+      "id": "51130f37-c4f2-4d5e-9638-02f56c09b705",
+      "legs": {
+        "a9467628-2acb-420c-a922-a60807604d4a": {
+          "id": "a9467628-2acb-420c-a922-a60807604d4a",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.080884,
+              "longitude": 8.637242
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Adolf-Miersch-StraÃe 88, 60528 Frankfurt am Main, Germany",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.525083,
+              "longitude": 13.369402
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Berlin Hauptbahnhof, Hauptbahnhof, Europaplatz 1, 10557 Berlin, Deutschland",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T14:30:00.000+0000",
+          "arrivalTime": "2020-06-05T20:36:06.000+0000",
+          "duration": 21966.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 25
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1979720441-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 568.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1979720441-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "VOLVO S40",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "57d414ca-2127-4653-96d9-928ed9a8a76f": {
+    "journey": {
+      "id": "57d414ca-2127-4653-96d9-928ed9a8a76f",
+      "legs": {
+        "9a6d7a4b-d491-4479-835b-92b4b88ecd8a": {
+          "id": "9a6d7a4b-d491-4479-835b-92b4b88ecd8a",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.107299805,
+              "longitude": 8.664890289
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Am Hauptbahnhof, 60329 Frankfurt am Main, Deutschland",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.503501892,
+              "longitude": 13.27820015
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Messedamm, Berlin, Deutschland",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T11:00:00.000+0000",
+          "arrivalTime": "2020-06-05T16:17:46.000+0000",
+          "duration": 19066.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 27
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1983335396-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 540.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1983335396-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "VOLKSWAGEN T6 CALIFORNIA",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "6a444253-eed1-40f8-bfba-f107eafb0b03": {
+    "journey": {
+      "id": "6a444253-eed1-40f8-bfba-f107eafb0b03",
+      "legs": {
+        "0de6ebab-a64d-4f97-9acb-f2d7e86e8d08": {
+          "id": "0de6ebab-a64d-4f97-9acb-f2d7e86e8d08",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.13136673,
+              "longitude": 8.663318634
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Miquelallee, Frankfurt am Main",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.455806732,
+              "longitude": 13.509875298
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "SchÃ¶neweide, Berlin",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T13:30:00.000+0000",
+          "arrivalTime": "2020-06-05T18:59:25.000+0000",
+          "duration": 19765.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 27
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1981605381-frankfurt-am-main-berlin"
+            }
+          },
+          "distance": {
+            "value": 559.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1981605381-frankfurt-am-main-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "BMW 3 SERIES",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  },
+  "80f9a5aa-d590-43f2-8abd-6b7fd5052048": {
+    "journey": {
+      "id": "80f9a5aa-d590-43f2-8abd-6b7fd5052048",
+      "legs": {
+        "dea845e6-7a0c-4a02-969c-7abaace556aa": {
+          "id": "dea845e6-7a0c-4a02-969c-7abaace556aa",
+          "start": {
+            "city": "Frankfurt am Main",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 50.108105,
+              "longitude": 8.661644
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "Steigenberger Hotel Metropolitan, Frankfurt, Frankfurt am Main",
+            "stationId": ""
+          },
+          "destination": {
+            "city": "Berlin",
+            "country": "de",
+            "postalCode": "",
+            "street": "",
+            "gpsCoordinates": {
+              "latitude": 52.550942,
+              "longitude": 13.351604
+            },
+            "platform": "",
+            "terminal": "",
+            "departureTime": null,
+            "arrivalTime": null,
+            "stationName": "MÃ¼llerstraÃe 43, Berlin",
+            "stationId": ""
+          },
+          "startTime": "2020-06-05T17:00:00.000+0000",
+          "arrivalTime": "2020-06-05T22:26:35.000+0000",
+          "duration": 19595.000000000,
+          "delay": null,
+          "travelLine": null,
+          "price": {
+            "values": {
+              "ADULT": 25
+            },
+            "currency": "EUR",
+            "symbol": "â¬",
+            "affiliateLinks": {
+              "ADULT": "https://www.blablacar.de/trip/carpooling/1984305421-frankfurt-nad-menem-berlin"
+            }
+          },
+          "distance": {
+            "value": 546.0,
+            "metric": "KILOMETERS"
+          },
+          "providerId": "1984305421-frankfurt-nad-menem-berlin",
+          "travelProvider": null,
+          "unknownTravelProvider": "",
+          "vehicleType": "CAR",
+          "vehicleName": "VOLKSWAGEN GOLF",
+          "vehicleNumber": "",
+          "incidents": [],
+          "hasPrice": false
+        }
+      },
+      "journeysRelated": null
+    },
+    "problem": null
+  }
+}

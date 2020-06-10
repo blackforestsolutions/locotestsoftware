@@ -32,3 +32,5 @@ docker run -d -p 8083:83 $fullQualifiedImageLocoApiService;
 docker run -d -p 8081:81 $fullQualifiedImageLocoHazelcast;
 
 docker run -d -p 8093:80 $fullQualifiedImageLocoFrontendAng;
+
+docker run -d -p 8083:83 blackforestsolutions/locoapiservice:0.0.2-SNAPSHOT

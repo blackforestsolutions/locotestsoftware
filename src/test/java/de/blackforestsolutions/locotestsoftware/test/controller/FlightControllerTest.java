@@ -46,7 +46,7 @@ public class FlightControllerTest {
 
     @Test
     void test_get_trains_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/flights/get/";
+        String urlString = "http://localhost:8089/flights/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());

@@ -28,7 +28,7 @@ public class LocatorControllerTest {
 
     @Test
     void test_retrieveLocatorJourneys_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/locate/get/";
+        String urlString = "http://localhost:8089/locate/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
@@ -47,7 +47,7 @@ public class LocatorControllerTest {
 
     @Test
     void test_retrieveLocatorJourneys_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/locate/get/";
+        String urlString = "http://localhost:8089/locate/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());

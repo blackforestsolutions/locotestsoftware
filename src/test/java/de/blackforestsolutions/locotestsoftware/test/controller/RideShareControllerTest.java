@@ -30,7 +30,7 @@ public class RideShareControllerTest {
 
     @Test
     void test_retrieveRideSharingJourneys_with_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/ride-shares/get/";
+        String urlString = "http://localhost:8089/ride-shares/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
@@ -49,7 +49,7 @@ public class RideShareControllerTest {
 
     @Test
     void test_retrieveRideSharingJourneys_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/ride-shares/get/";
+        String urlString = "http://localhost:8089/ride-shares/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());

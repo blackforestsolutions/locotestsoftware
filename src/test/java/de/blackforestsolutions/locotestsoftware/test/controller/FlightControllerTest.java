@@ -37,7 +37,7 @@ public class FlightControllerTest {
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         String request = locoJsonMapper.map(testData.build());
         HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
-         ResponseEntity<String> result = getFlights(uri, requestEntity);
+        ResponseEntity<String> result = getFlights(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
         org.junit.jupiter.api.Assertions.assertEquals(0, 0);

@@ -49,7 +49,7 @@ public class NearestStationFinderControllerTest {
 
     @Test
     void test_retrieveAirportsFinderTravelPoints_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/nearest-airports/get/";
+        String urlString = "http://localhost:8089/nearest-airports/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());

@@ -1,10 +1,12 @@
-package de.blackforestsolutions.locotestsoftware.test.controller;
+package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
-import de.blackforestsolutions.datamodel.Coordinates;
+import de.blackforestsolutions.datamodel.JourneyStatus;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -16,31 +18,36 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import static de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTokenAndUrlInformationObjectMother.getAirportsFinderTokenAndUrl;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class NearestStationFinderControllerTest {
+public class FlightControllerTest {
+
+    @Value("${loco.flight.controller.url}")
+    private String locoFlightControllerUrl;
 
     private final LocoJsonMapper locoJsonMapper = new LocoJsonMapper();
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
-    // todo problem is that before  sending a request we have to get de gps coordinates of the wanted location
     @Test
-    void test_retrieveAirportsFinderTravelPoints_with_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/nearest-airports/get/";
+    void test_getFlights_with_test_data() throws JsonProcessingException {
+        String urlString = this.locoFlightControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Berlin");
-        testData.setArrival("Frankfurt");
-        testData.setJourneyDetailsId("detailsId");
+        testData.setDeparture("Frankfurt");
+        testData.setArrival("Berlin");
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
+        ResponseEntity<String> result = getFlights(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
         org.junit.jupiter.api.Assertions.assertEquals(0, 0);
@@ -48,8 +55,8 @@ public class NearestStationFinderControllerTest {
 
 
     @Test
-    void test_retrieveAirportsFinderTravelPoints_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/nearest-airports/get/";
+    void test_get_trains_with_reverse_test_data() throws JsonProcessingException {
+        String urlString = this.locoFlightControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
@@ -59,62 +66,55 @@ public class NearestStationFinderControllerTest {
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         testData.setJourneyDetailsId("detailsId");
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity<String> requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
+        ResponseEntity<String> result = getFlights(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
         org.junit.jupiter.api.Assertions.assertEquals(0, 0);
     }
 
-    private ResponseEntity<String> getLocations(URI url, HttpEntity<String> requestEntity) {
+    private ResponseEntity<String> getFlights(URI url, HttpEntity<ApiTokenAndUrlInformation> requestEntity) {
         return restTemplate.postForEntity(url, requestEntity, String.class);
     }
 
     @Test
-    void test_retrieveAirportsFinderTravelPoints_with_Coordinates_returns_correctly() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/nearest-airports/get/";
+    void test_getFlights_with_airports_which_work_for_britishAirways_and_lufthansa() throws JsonProcessingException {
+        String urlString = this.locoFlightControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Berlin");
-        testData.setArrival("Frankfurt");
-        testData.setJourneyDetailsId("detailsId");
+        testData.setDeparture("fra");
+        testData.setArrival("lhr");
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        testData.setDepartureCoordinates(getTestDataCoordinates(52.52437, 13.41053));
-        testData.setArrivalCoordinates(getTestDataCoordinates(50.11552, 8.68417));
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
 
-        //Assertions.assertThat(result).isNotNull();
-        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
-    }
+        ResponseEntity<String> result = getFlights(uri, requestEntity);
+        Map<UUID, JourneyStatus> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
 
-    private Coordinates getTestDataCoordinates(double lat, double lon) {
-        return new Coordinates.CoordinatesBuilder(lat, lon).build();
-
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(1);
+        assertThat(resultMapped.values().stream().findFirst().get().getJourney().get().getId()).isEqualTo(resultMapped.entrySet().stream().findFirst().get());
     }
 
     @Test
-    void test_retrieveAirportsFinderTravelPoints_without_needed_coordinates_returns_error_code_in_controller_callStatus() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/nearest-airports/get/";
+    void test_getFlights_with_airports_which_dont_work_for_britishAirways_but_for_lufthansa() throws JsonProcessingException {
+        String urlString = this.locoFlightControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Berlin");
-        testData.setArrival("Frankfurt");
-        testData.setJourneyDetailsId("detailsId");
+        testData.setDeparture("fra");
+        testData.setArrival("ham");
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        testData.setDepartureCoordinates(getTestDataCoordinates(52.52437, 13.41053));
-        testData.setArrivalCoordinates(getTestDataCoordinates(50.11552, 8.68417));
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
+        ResponseEntity<String> result = getFlights(uri, requestEntity);
+        Map<UUID, JourneyStatus> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
 
         //Assertions.assertThat(result).isNotNull();
         org.junit.jupiter.api.Assertions.assertEquals(0, 0);
     }
-
 }

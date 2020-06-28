@@ -2,4 +2,16 @@
 <checkstyle version="6.11.2">
 <file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\main\java\de\blackforestsolutions\locotestsoftware\Application.java">
 </file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\application-dev.properties">
+</file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\application-int.properties">
+</file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\application-prd.properties">
+</file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\application-test.properties">
+</file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\application.properties">
+</file>
+<file name="C:\repo\blackforestsolutions\loco\locotestsoftware\src\test\resources\env-application.properties">
+</file>
 </checkstyle>

@@ -1,9 +1,10 @@
-package de.blackforestsolutions.locotestsoftware.test.controller;
+package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -20,24 +21,27 @@ import static de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTok
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TrainRidesControllerTest {
+public class LocatorControllerTest {
+
+    @Value("${loco.locator.controller.url}")
+    private String locoLocatorControllerUrl;
 
     private final LocoJsonMapper locoJsonMapper = new LocoJsonMapper();
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
+
     @Test
-    void test_retrieveTrainJourneys_with_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/train-rides/get/";
+    void test_retrieveLocatorJourneys_test_data() throws JsonProcessingException {
+        String urlString = this.locoLocatorControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Berlin");
-        testData.setArrival("Frankfurt");
-        testData.setJourneyDetailsId("detailsId");
+        testData.setDeparture("Bern");
+        testData.setArrival("Schaffhausen");
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity requestEntity = new HttpEntity(request);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getLocations(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
@@ -46,18 +50,18 @@ public class TrainRidesControllerTest {
 
 
     @Test
-    void test_retrieveTrainJourneys_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8082/train-rides/get/";
+    void test_retrieveLocatorJourneys_with_reverse_test_data() throws JsonProcessingException {
+        String urlString = this.locoLocatorControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Frankfurt");
-        testData.setArrival("Berlin");
+        testData.setDeparture("Schaffhausen");
+        testData.setArrival("Bern");
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         testData.setJourneyDetailsId("detailsId");
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity<String> requestEntity = new HttpEntity(request);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getLocations(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();

@@ -1,4 +1,4 @@
-package de.blackforestsolutions.locotestsoftware.test.controller;
+package de.blackforestsolutions.locotestsoftware.test.crawler.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
@@ -20,14 +20,14 @@ import static de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTok
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class FlightControllerTest {
+public class JourneyControllerTest {
 
     private final LocoJsonMapper locoJsonMapper = new LocoJsonMapper();
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
     @Test
     void test_getFlights_with_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/flights/get/";
+        String urlString = "http://localhost:8082/journeys/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
@@ -36,7 +36,7 @@ public class FlightControllerTest {
         testData.setDepartureDate(Date.from(Instant.now()));
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getFlights(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
@@ -46,7 +46,7 @@ public class FlightControllerTest {
 
     @Test
     void test_get_trains_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/flights/get/";
+        String urlString = "http://localhost:8082/journeys/get/";
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
         testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
@@ -56,50 +56,14 @@ public class FlightControllerTest {
         testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
         testData.setJourneyDetailsId("detailsId");
         String request = locoJsonMapper.map(testData.build());
-        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getFlights(uri, requestEntity);
 
         //Assertions.assertThat(result).isNotNull();
         org.junit.jupiter.api.Assertions.assertEquals(0, 0);
     }
 
-    private ResponseEntity<String> getFlights(URI url, HttpEntity<ApiTokenAndUrlInformation> requestEntity) {
+    private ResponseEntity<String> getFlights(URI url, HttpEntity<String> requestEntity) {
         return restTemplate.postForEntity(url, requestEntity, String.class);
-    }
-
-    @Test
-    void test_getFlights_with_airports_which_work_for_britishAirways_and_lufthansa() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/flights/get/";
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
-        testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("fra");
-        testData.setArrival("lhr");
-        testData.setDepartureDate(Date.from(Instant.now()));
-        testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        String request = locoJsonMapper.map(testData.build());
-        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getFlights(uri, requestEntity);
-
-        //Assertions.assertThat(result).isNotNull();
-        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
-    }
-
-    @Test
-    void test_getFlights_with_airports_which_dont_work_for_britishAirways_but_for_lufthansa() throws JsonProcessingException {
-        String urlString = "http://localhost:8089/flights/get/";
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
-        testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("fra");
-        testData.setArrival("ham");
-        testData.setDepartureDate(Date.from(Instant.now()));
-        testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        String request = locoJsonMapper.map(testData.build());
-        HttpEntity<ApiTokenAndUrlInformation> requestEntity = new HttpEntity(request);
-        ResponseEntity<String> result = getFlights(uri, requestEntity);
-
-        //Assertions.assertThat(result).isNotNull();
-        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
     }
 }

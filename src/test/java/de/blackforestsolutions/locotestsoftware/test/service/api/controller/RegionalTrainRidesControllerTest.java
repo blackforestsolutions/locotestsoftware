@@ -1,8 +1,11 @@
 package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
+import de.blackforestsolutions.datamodel.Journey;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
+import de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTokenAndUrlInformationObjectMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,10 +17,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.time.Instant;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
-import static de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTokenAndUrlInformationObjectMother.getAirportsFinderTokenAndUrl;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,19 +37,16 @@ public class RegionalTrainRidesControllerTest {
     void test_retrieveTrainJourneys_with_test_data() throws JsonProcessingException {
         String urlString = this.locoRegionalTrainControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
-        testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Berlin");
-        testData.setArrival("Frankfurt");
-        testData.setJourneyDetailsId("detailsId");
-        testData.setDepartureDate(Date.from(Instant.now()));
-        testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        String request = locoJsonMapper.map(testData.build());
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformation();
+        String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        //Assertions.assertThat(result).isNotNull();
-        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
+        Map<UUID, Journey> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
+
+        assertThat(resultMapped).isNotNull();
+        //assertThat(resultMapped).isNotEmpty();
+        //assertThat(resultMapped.size()).isGreaterThan(1);
     }
 
 
@@ -53,19 +54,16 @@ public class RegionalTrainRidesControllerTest {
     void test_retrieveTrainJourneys_with_reverse_test_data() throws JsonProcessingException {
         String urlString = this.locoRegionalTrainControllerUrl;
         URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder testData = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder();
-        testData.setDepartureCoordinates(getAirportsFinderTokenAndUrl().getDepartureCoordinates());
-        testData.setDeparture("Frankfurt");
-        testData.setArrival("Berlin");
-        testData.setDepartureDate(Date.from(Instant.now()));
-        testData.setArrivalDate(Date.from(Instant.now().plusSeconds(99999)));
-        testData.setJourneyDetailsId("detailsId");
-        String request = locoJsonMapper.map(testData.build());
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformationReverse();
+        String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
         ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        //Assertions.assertThat(result).isNotNull();
-        org.junit.jupiter.api.Assertions.assertEquals(0, 0);
+        Map<UUID, Journey> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
+
+        assertThat(resultMapped).isNotNull();
+        //assertThat(resultMapped).isNotEmpty();
+        //assertThat(resultMapped.size()).isGreaterThan(1);
     }
 
     private ResponseEntity<String> getLocations(URI url, HttpEntity<String> requestEntity) {

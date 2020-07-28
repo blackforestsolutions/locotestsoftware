@@ -3,3 +3,5 @@ locotestsoftware.iml
 classes/
 target/
 
+/loco.testsoftware.iml
+/target/

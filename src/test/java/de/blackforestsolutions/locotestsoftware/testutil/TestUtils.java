@@ -52,8 +52,8 @@ public class TestUtils {
         return new SimpleDateFormat("yyyy-MM-dd").parse(format);
     }
 
-    public static Date generateDateFromPatternAndString(String pattern, String date) throws ParseException {
-        return new SimpleDateFormat(pattern).parse(date);
+    public static ZonedDateTime generateDateFromPatternAndString(String date) {
+        return ZonedDateTime.parse(date);
     }
 
     public static Date buildDateFrom(String date) throws ParseException {

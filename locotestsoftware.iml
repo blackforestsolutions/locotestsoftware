@@ -31,6 +31,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.github.blackforestsolutions:locodatamodel:2.2.0-RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-json:2.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.10.0" level="project" />
@@ -73,7 +74,7 @@
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.8" level="project" />
-    <orderEntry type="library" name="Maven: com.github.blackforestsolutions:locodatamodel:2.2.0-RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.github.blackforestsolutions:locodatamodel:2.2.3-callstatus-6" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-ui:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.springdoc:springdoc-openapi-webmvc-core:1.3.1" level="project" />

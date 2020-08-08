@@ -1,7 +1,7 @@
 package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
+import de.blackforestsolutions.datamodel.TravelPoint;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
 import de.blackforestsolutions.locotestsoftware.util.objectmothers.ApiTokenAndUrlInformationObjectMother;
 import org.junit.jupiter.api.Test;
@@ -10,15 +10,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class LocatorControllerTest {
+class LocatorControllerTest {
 
     @Value("${loco.locator.controller.url}")
     private String locoLocatorControllerUrl;
@@ -28,39 +30,33 @@ public class LocatorControllerTest {
 
 
     @Test
-    void test_retrieveLocatorJourneys_test_data() throws JsonProcessingException {
-        String urlString = this.locoLocatorControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getSearchChTokenAndUrl();
-        String request = locoJsonMapper.map(testData);
-        HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+    void test_retrieveLocatorTravelPoint_with_departure() throws IOException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrl();
+        String url = locoLocatorControllerUrl + "?address=" + testData.getDeparture();
 
-        //Coordinates resultMapped = new ObjectMapper().readValue(result.getBody(), Coordinates.class);
+        ResponseEntity<String> result = retrieveLocatorTravelPoint(url);
+        TravelPoint resultMapped = locoJsonMapper.mapJsonToTravelPoint(result.getBody());
 
-        //assertThat(resultMapped).isNotNull();
-        //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped.getStationName()).isNotEmpty();
     }
 
 
     @Test
-    void test_retrieveLocatorJourneys_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = this.locoLocatorControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getSearchChReverseTokenAndUrl();
-        String request = locoJsonMapper.map(testData);
-        HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
+    void test_retrieveLocatorTravelPoint_with_arrival() throws IOException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrl();
+        String url = locoLocatorControllerUrl + "?address=" + testData.getArrival();
 
-        //Coordinates resultMapped = new ObjectMapper().readValue(result.getBody(), Coordinates.class);
+        ResponseEntity<String> result = retrieveLocatorTravelPoint(url);
+        TravelPoint resultMapped = locoJsonMapper.mapJsonToTravelPoint(result.getBody());
 
-        //assertThat(resultMapped).isNotNull();
-        //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped.getStationName()).isNotEmpty();
     }
 
-    private ResponseEntity<String> getLocations(URI url, HttpEntity<String> requestEntity) {
-        return restTemplate.postForEntity(url, requestEntity, String.class);
+    private ResponseEntity<String> retrieveLocatorTravelPoint(String url) {
+        return restTemplate.postForEntity(url, HttpEntity.EMPTY, String.class);
     }
 }

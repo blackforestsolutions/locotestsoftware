@@ -1,7 +1,6 @@
 package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
 import de.blackforestsolutions.datamodel.TravelPoint;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
@@ -12,16 +11,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.LinkedHashSet;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class NearestStationFinderControllerTest {
+class NearestStationFinderControllerTest {
 
     @Value("${loco.nearest.station.controller.url}")
     private String locoNearestControllerUrl;
@@ -29,42 +29,39 @@ public class NearestStationFinderControllerTest {
     private final LocoJsonMapper locoJsonMapper = new LocoJsonMapper();
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
-    // todo problem is that before  sending a request we have to get de gps coordinates of the wanted location
     @Test
-    void test_retrieveAirportsFinderTravelPoints_with_test_data() throws JsonProcessingException {
-        String urlString = this.locoNearestControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformation();
+    void test_retrieveNearestAirportTravelPoints_with_test_data() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrl();
         String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        LinkedHashSet<TravelPoint> resultMapped = new ObjectMapper().readValue(result.getBody(), LinkedHashSet.class);
+        ResponseEntity<String> result = retrieveNearestAirportTravelPoints(requestEntity);
+        List<TravelPoint> resultMapped = locoJsonMapper.mapJsonToTravelPointList(result.getBody());
 
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         //assertThat(resultMapped).isNotNull();
         //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        //assertThat(resultMapped.size()).isGreaterThan(0);
     }
 
 
     @Test
-    void test_retrieveAirportsFinderTravelPoints_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = this.locoNearestControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformationReverse();
+    void test_retrieveNearestAirportTravelPoints_with_reverse_test_data() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlReverse();
         String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        LinkedHashSet<TravelPoint> resultMapped = new ObjectMapper().readValue(result.getBody(), LinkedHashSet.class);
+        ResponseEntity<String> result = retrieveNearestAirportTravelPoints(requestEntity);
+        List<TravelPoint> resultMapped = locoJsonMapper.mapJsonToTravelPointList(result.getBody());
 
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         //assertThat(resultMapped).isNotNull();
         //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        //assertThat(resultMapped.size()).isGreaterThan(0);
     }
 
-    private ResponseEntity<String> getLocations(URI url, HttpEntity<String> requestEntity) {
-        return restTemplate.postForEntity(url, requestEntity, String.class);
+    private ResponseEntity<String> retrieveNearestAirportTravelPoints(HttpEntity<String> requestEntity) {
+        return restTemplate.postForEntity(locoNearestControllerUrl, requestEntity, String.class);
     }
 
 }

@@ -1,7 +1,6 @@
 package de.blackforestsolutions.locotestsoftware.test.service.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blackforestsolutions.datamodel.ApiTokenAndUrlInformation;
 import de.blackforestsolutions.datamodel.Journey;
 import de.blackforestsolutions.datamodel.util.LocoJsonMapper;
@@ -12,12 +11,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -25,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RegionalTrainRidesControllerTest {
+class RegionalTrainRidesControllerTest {
 
     @Value("${loco.regional.train.controller.url}")
     private String locoRegionalTrainControllerUrl;
@@ -34,39 +31,126 @@ public class RegionalTrainRidesControllerTest {
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
     @Test
-    void test_retrieveTrainJourneys_with_test_data() throws JsonProcessingException {
-        String urlString = this.locoRegionalTrainControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformation();
+    void test_retrieveTrainJourneys_with_test_data_with_vbb_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getVbbTokenAndUrl();
         String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        Map<UUID, Journey> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
 
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(resultMapped).isNotNull();
-        //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
     }
-
 
     @Test
-    void test_retrieveTrainJourneys_with_reverse_test_data() throws JsonProcessingException {
-        String urlString = this.locoRegionalTrainControllerUrl;
-        URI uri = UriComponentsBuilder.fromUriString(urlString).build().toUri();
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrlInformationReverse();
+    void test_retrieveTrainJourneys_with_reverse_test_data_with_vbb_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getVbbTokenAndUrlReversed();
         String request = locoJsonMapper.map(testData);
         HttpEntity<String> requestEntity = new HttpEntity<>(request);
-        ResponseEntity<String> result = getLocations(uri, requestEntity);
 
-        Map<UUID, Journey> resultMapped = new ObjectMapper().readValue(result.getBody(), HashMap.class);
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
 
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(resultMapped).isNotNull();
-        //assertThat(resultMapped).isNotEmpty();
-        //assertThat(resultMapped.size()).isGreaterThan(1);
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
     }
 
-    private ResponseEntity<String> getLocations(URI url, HttpEntity<String> requestEntity) {
+    @Test
+    void test_retrieveTrainJourneys_with_test_data_with_nahSh_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getNahShTokenAndUrl();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    @Test
+    void test_retrieveTrainJourneys_with_reverse_test_data_with_nahSh_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getNahShTokenAndUrlReversed();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    @Test
+    void test_retrieveTrainJourneys_with_test_data_with_rmv_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getRmvTokenAndUrl();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    @Test
+    void test_retrieveTrainJourneys_with_reverse_test_data_with_rmv_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getRmvTokenAndUrlReversed();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    @Test
+    void test_retrieveTrainJourneys_with_test_data_with_hvv_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getHvvTokenAndUrl();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    @Test
+    void test_retrieveTrainJourneys_with_reverse_test_data_with_hvv_token() throws JsonProcessingException {
+        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getHvvTokenAndUrlReversed();
+        String request = locoJsonMapper.map(testData);
+        HttpEntity<String> requestEntity = new HttpEntity<>(request);
+
+        ResponseEntity<String> result = retrieveTrainJourneys(locoRegionalTrainControllerUrl, requestEntity);
+        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
+
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(resultMapped).isNotNull();
+        assertThat(resultMapped).isNotEmpty();
+        assertThat(resultMapped.size()).isGreaterThan(0);
+    }
+
+    private ResponseEntity<String> retrieveTrainJourneys(String url, HttpEntity<String> requestEntity) {
         return restTemplate.postForEntity(url, requestEntity, String.class);
     }
 }

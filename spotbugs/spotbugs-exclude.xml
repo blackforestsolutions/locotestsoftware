@@ -39,7 +39,7 @@
   Note that this configuration file is not used by default in the maven build (mvn site), as FindBugs maven plugin
   handles the paths as relative to a module root and would require to have such file in each module separately.
   To use this exclusion configuration, run build with:
-  mvn site -Dfindbugs.exclude=[jersey_project_root]/etc/config/findbugs-exclude.xml
+  mvn site -Dfindbugs.exclude=[jersey_project_root]/etc/config/spotbugs-exclude.xml
   -->
 <FindBugsFilter>
 

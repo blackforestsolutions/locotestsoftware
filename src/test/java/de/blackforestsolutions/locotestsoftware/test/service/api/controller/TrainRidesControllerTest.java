@@ -31,37 +31,6 @@ class TrainRidesControllerTest {
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
     @Test
-    void test_retrieveTrainJourneys_with_test_data_with_bahn_token() throws JsonProcessingException {
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getBahnTokenAndUrl();
-        String request = locoJsonMapper.map(testData);
-        HttpEntity<String> requestEntity = new HttpEntity<>(request);
-
-        ResponseEntity<String> result = retrieveTrainJourneys(requestEntity);
-        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
-
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(resultMapped).isNotNull();
-//        assertThat(resultMapped).isNotEmpty();
-//        assertThat(resultMapped.size()).isGreaterThan(0);
-    }
-
-
-    @Test
-    void test_retrieveTrainJourneys_with_reverse_test_data_with_bahn_token() throws JsonProcessingException {
-        ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getBahnTokenAndUrlReversed();
-        String request = locoJsonMapper.map(testData);
-        HttpEntity<String> requestEntity = new HttpEntity<>(request);
-
-        ResponseEntity<String> result = retrieveTrainJourneys(requestEntity);
-        Map<UUID, Journey> resultMapped = locoJsonMapper.mapJsonToJourneyMap(result.getBody());
-
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(resultMapped).isNotNull();
-//        assertThat(resultMapped).isNotEmpty();
-//        assertThat(resultMapped.size()).isGreaterThan(0);
-    }
-
-    @Test
     void test_retrieveTrainJourneys_with_test_data_with_db_token() throws JsonProcessingException {
         ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getDbTokenAndUrl();
         String request = locoJsonMapper.map(testData);

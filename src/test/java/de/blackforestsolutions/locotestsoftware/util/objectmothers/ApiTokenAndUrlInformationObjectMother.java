@@ -81,25 +81,6 @@ public class ApiTokenAndUrlInformationObjectMother {
         return builder.build();
     }
 
-    public static ApiTokenAndUrlInformation getBahnTokenAndUrl() {
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder builder = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder(getApiTokenAndUrl());
-        builder.setDeparture("Berlin Hbf");
-        builder.setDepartureCoordinates(CoordinatesObjectMother.getBerlinHbfCoordinates());
-        builder.setArrival("Frankfurt Hbf");
-        builder.setArrivalCoordinates(CoordinatesObjectMother.getFrankfurtHbfCoordinates());
-        builder.setJourneyDetailsId("715770%2F254084%2F898562%2F210691%2F80%3fstation_evaId%3D8000312");
-        return builder.build();
-    }
-
-    public static ApiTokenAndUrlInformation getBahnTokenAndUrlReversed() {
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder builder = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder(getBahnTokenAndUrl());
-        builder.setArrival("Frankfurt Hbf");
-        builder.setArrivalCoordinates(CoordinatesObjectMother.getFrankfurtHbfCoordinates());
-        builder.setDeparture("Berlin Hbf");
-        builder.setDepartureCoordinates(CoordinatesObjectMother.getBerlinHbfCoordinates());
-        return builder.build();
-    }
-
     public static ApiTokenAndUrlInformation getLufthansaTokenAndUrl() {
         ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder builder = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder(getApiTokenAndUrl());
         builder.setDeparture("ZRH");
@@ -119,7 +100,7 @@ public class ApiTokenAndUrlInformationObjectMother {
     }
 
     public static ApiTokenAndUrlInformation getBritishAirwaysTokenAndUrl() {
-        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder builder = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder(getBahnTokenAndUrl());
+        ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder builder = new ApiTokenAndUrlInformation.ApiTokenAndUrlInformationBuilder(getApiTokenAndUrl());
         builder.setDeparture("lhr");
         builder.setDepartureCoordinates(CoordinatesObjectMother.getLondonHeathrowCoordinates());
         builder.setArrival("txl");

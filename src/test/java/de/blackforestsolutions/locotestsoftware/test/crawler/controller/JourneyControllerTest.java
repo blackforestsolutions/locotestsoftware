@@ -30,7 +30,7 @@ class JourneyControllerTest {
     private final LocoJsonMapper locoJsonMapper = new LocoJsonMapper();
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
-    //@Test
+    @Test
     void test_retrieveJourneys_with_test_data() throws JsonProcessingException {
         ApiTokenAndUrlInformation testData = ApiTokenAndUrlInformationObjectMother.getApiTokenAndUrl();
         String request = locoJsonMapper.map(testData);

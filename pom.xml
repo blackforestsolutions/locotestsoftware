@@ -20,7 +20,7 @@
         <apache.lang-version>2.6</apache.lang-version>
         <lombok.version>1.18.8</lombok.version>
         <jaxws.version>2.3.2</jaxws.version>
-        <blackforestsolutions.datamodel.version>2.2.3.RELEASE</blackforestsolutions.datamodel.version>
+        <blackforestsolutions.datamodel.version>blablabus-10</blackforestsolutions.datamodel.version>
         <guava.version>28.1-jre</guava.version>
         <loco.api.service.version>0.0.2-SNAPSHOT</loco.api.service.version>
         <loco.crawler.version>0.0.1-SNAPSHOT</loco.crawler.version>
